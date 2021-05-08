@@ -2,13 +2,48 @@ import styles from "./styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useChat } from "../../contexts/ChatsContext";
+import { api } from "../../services/api";
 
 export function ChatInfo() {
-  const { membersList, currentChatIndex } = useChat();
+  const {
+    user,
+    membersList,
+    currentChatIndex,
+    fullData,
+    shouldUpdate,
+    setShouldUpdate,
+    tempMember,
+    setTempMember,
+    enableFields,
+  } = useChat();
+
+  function handleNewMemberToGroup(event) {
+    event.preventDefault();
+
+    const newMember = event.target.addToGroup.value;
+    const channelID = fullData[currentChatIndex].id;
+    const attChannel = {
+      id: channelID,
+      title: fullData[currentChatIndex].title,
+      members: [...fullData[currentChatIndex].members, newMember],
+      messages: fullData[currentChatIndex].messages,
+    };
+
+    api.put(`channels/${channelID}`, attChannel);
+
+    setShouldUpdate(shouldUpdate + 1);
+    setTempMember("");
+  }
+
+  function handleMemberFieldChange(data) {
+    setTempMember(data);
+  }
 
   return (
-    <div className={styles.chatInfoContainer}>
-      <div className={styles.addToChatContainer}>
+    <div
+      className={user === "" ? styles.displayNone : styles.chatInfoContainer}
+    >
+      <div className={styles.chatInfo}>
         <h2>Participantes</h2>
 
         {membersList
@@ -25,13 +60,19 @@ export function ChatInfo() {
           )}
       </div>
 
-      <form>
+      <form
+        className={enableFields ? styles.displayNone : ""}
+        onSubmit={(data) => handleNewMemberToGroup(data)}
+      >
         <input
           type="text"
-          id="addToGroupButton"
+          id="addToGroup"
           placeholder="Adicionar pessoas"
+          value={tempMember}
+          onChange={(data) => handleMemberFieldChange(data.target.value)}
+          disabled={enableFields}
         />
-        <button type="submit">
+        <button type="submit" disabled={enableFields}>
           <FontAwesomeIcon
             icon={faPlus}
             className={styles.addIcon}

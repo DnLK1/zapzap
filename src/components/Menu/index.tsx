@@ -9,16 +9,18 @@ import { useEffect } from "react";
 
 export function Menu() {
   const {
+    user,
     fullData,
     setFullData,
-    chatList,
-    setChatList,
     setChannelsMessageHistory,
     setMembersList,
     shouldUpdate,
     setShouldUpdate,
     currentChatIndex,
     setCurrentChatIndex,
+    tempGroup,
+    setTempGroup,
+    setEnableFields,
   } = useChat();
 
   useEffect(async () => {
@@ -30,9 +32,6 @@ export function Menu() {
   useEffect(async () => {
     const { data } = await api.get("channels");
 
-    const newChannels = data.map((channel) => channel.title);
-    const newChannelsArray = [...newChannels];
-
     const newMessages = data.map((channel) => channel.messages);
     const newMessagesArray = [...newMessages];
 
@@ -41,12 +40,12 @@ export function Menu() {
 
     setChannelsMessageHistory(newMessagesArray);
     setMembersList(newMembersArray);
-    setChatList(newChannelsArray);
     setFullData(data);
   }, [shouldUpdate]);
 
   function handleSelectChat(key) {
     setCurrentChatIndex(key);
+    setEnableFields(false);
   }
 
   function handleNewChatSubmit(event) {
@@ -60,48 +59,63 @@ export function Menu() {
     const newChat = {
       id: randomID,
       title: newChatTitle,
-      members: ["Daniel Kaneko"],
+      members: [user],
       messages: [],
     };
 
     api.post("channels", newChat);
 
     setShouldUpdate(shouldUpdate + 1);
+    setTempGroup("");
+  }
+
+  function handleGroupFieldChange(data) {
+    setTempGroup(data);
   }
 
   return (
-    <div className={styles.menuContainer}>
+    <div className={user === "" ? styles.displayNone : styles.menuContainer}>
       <div className={styles.profileContainer}>
         <img className={styles.avatarImage} src="/avatars/girl-4.png" />
-        <h2>Daniel Kaneko</h2>
+        <h2>{user}</h2>
       </div>
 
       <div className={styles.chatRooms}>
-        {chatList.map((channel, index) => {
-          const chatSlug = channel.replace(" ", "-").toLowerCase();
+        {fullData
+          .filter((channels) => channels.members.includes(user))
+          .map((channel, index) => {
+            const chatSlug = channel.title.replace(" ", "-").toLowerCase();
 
-          return (
-            <div
-              key={index}
-              className={
-                currentChatIndex == index
-                  ? styles.chatRoomActive
-                  : styles.chatRoom
-              }
-            >
-              <FontAwesomeIcon
-                icon={faComments}
-                color={currentChatIndex == index ? "#298bf3" : ""}
-              />
-              <Link href={`/chat/${chatSlug}`}>
-                <h4 onClick={() => handleSelectChat(index)}>{channel}</h4>
-              </Link>
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={index}
+                className={
+                  currentChatIndex == index
+                    ? styles.chatRoomActive
+                    : styles.chatRoom
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faComments}
+                  color={currentChatIndex == index ? "#298bf3" : ""}
+                />
+                <Link href={`/chat/${chatSlug}`}>
+                  <h4 onClick={() => handleSelectChat(index)}>
+                    {channel.title}
+                  </h4>
+                </Link>
+              </div>
+            );
+          })}
       </div>
       <form onSubmit={(data) => handleNewChatSubmit(data)}>
-        <input type="text" id="addChatButton" placeholder="Novo grupo" />
+        <input
+          type="text"
+          id="addChatButton"
+          placeholder="Novo grupo"
+          value={tempGroup}
+          onChange={(data) => handleGroupFieldChange(data.target.value)}
+        />
         <button type="submit">
           <FontAwesomeIcon
             icon={faPlus}

@@ -47,6 +47,11 @@
 
       &:focus {
         outline: none;
+        border-color: var(--blue-strong);
+      }
+
+      &:focus + button {
+        background: var(--blue-strong);
       }
     }
 
@@ -121,4 +126,8 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+}
+
+.displayNone {
+  display: none;
 }

@@ -1,7 +1,6 @@
 .messageHistory {
   display: flex;
   flex-direction: column-reverse;
-  align-items: flex-end;
 
   width: 85%;
   height: 100vh;
@@ -47,7 +46,7 @@
 
 .messageOverflow {
   display: flex;
-  max-width: 60%;
+  width: 100%;
   height: 80vh;
   overflow: auto;
   flex-direction: column-reverse;
@@ -67,7 +66,7 @@
   }
 }
 
-.messageContainer {
+.messageSentContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
@@ -80,7 +79,7 @@
   }
 }
 
-.message {
+.messageSent {
   display: inline-block;
   flex-direction: row-reverse;
 
@@ -102,4 +101,45 @@
   h5 {
     color: var(--gray);
   }
+}
+
+.messageReceivedContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+
+  align-items: flex-Start;
+
+  h6 {
+    opacity: 0.5;
+  }
+}
+
+.messageReceived {
+  display: inline-block;
+  flex-direction: row-reverse;
+
+  padding: 1rem 1.25rem;
+  max-width: 100%;
+  margin-bottom: 1rem;
+
+  background-image: var(--blue-gradient);
+  border: 1px solid var(--gray-light);
+  border-radius: 10px 10px 10px 0;
+
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.025), 0 2px 2px rgba(0, 0, 0, 0.025),
+    0 4px 4px rgba(0, 0, 0, 0.025), 0 6px 8px rgba(0, 0, 0, 0.025),
+    0 8px 16px rgba(0, 0, 0, 0.025);
+
+  text-align: right;
+  overflow-wrap: break-word;
+
+  h5 {
+    color: var(--white-strong);
+  }
+}
+
+.displayNone {
+  display: none;
 }

@@ -4,22 +4,25 @@ export const ChatContext = createContext({});
 
 export function ChatContextProvider({ children }) {
   const [fullData, setFullData] = useState([]);
+  const [user, setUser] = useState("");
   const [tempMessage, setTempMessage] = useState("");
-  const [chatList, setChatList] = useState([]);
+  const [tempGroup, setTempGroup] = useState("");
+  const [tempMember, setTempMember] = useState("");
   const [membersList, setMembersList] = useState([]);
   const [currentChatIndex, setCurrentChatIndex] = useState();
   const [channelsMessageHistory, setChannelsMessageHistory] = useState([]);
   const [shouldUpdate, setShouldUpdate] = useState(0);
+  const [enableFields, setEnableFields] = useState(true);
 
   return (
     <ChatContext.Provider
       value={{
         fullData,
         setFullData,
+        user,
+        setUser,
         tempMessage,
         setTempMessage,
-        chatList,
-        setChatList,
         channelsMessageHistory,
         setChannelsMessageHistory,
         membersList,
@@ -28,6 +31,12 @@ export function ChatContextProvider({ children }) {
         setShouldUpdate,
         currentChatIndex,
         setCurrentChatIndex,
+        tempGroup,
+        setTempGroup,
+        tempMember,
+        setTempMember,
+        enableFields,
+        setEnableFields,
       }}
     >
       {children}

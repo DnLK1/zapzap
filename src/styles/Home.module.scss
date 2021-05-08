@@ -1,0 +1,42 @@
+.firstInstructions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  h4 {
+    color: var(--gray);
+    text-align: center;
+  }
+}
+
+.displayForm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+
+    input {
+      padding: 20px;
+      margin-bottom: 1rem;
+      text-align: center;
+      border: none;
+    }
+
+    button {
+      padding: 10px;
+      background-image: var(--blue-gradient);
+      color: var(--white-strong);
+      border: none;
+    }
+  }
+}
+
+.displayNone {
+  display: none;
+}

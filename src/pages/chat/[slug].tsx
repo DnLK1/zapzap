@@ -6,6 +6,7 @@ import { api } from "../../services/api";
 
 export default function Chat() {
   const {
+    user,
     fullData,
     tempMessage,
     setTempMessage,
@@ -13,6 +14,7 @@ export default function Chat() {
     currentChatIndex,
     setShouldUpdate,
     shouldUpdate,
+    enableFields,
   } = useChat();
 
   function handleNewMessageSubmit(event) {
@@ -27,7 +29,7 @@ export default function Chat() {
       members: fullData[currentChatIndex].members,
       messages: [
         {
-          sender: "Daniel Kaneko",
+          sender: user,
           content: newMessage,
           published_at: "2021-01-22 16:35:40",
           channel_id: channelID,
@@ -47,40 +49,63 @@ export default function Chat() {
   }
 
   return (
-    <div className={styles.chat}>
-      <div className={styles.messageHistory}>
-        <form onSubmit={(data) => handleNewMessageSubmit(data)}>
-          <input
-            type="text"
-            id="sendMessage"
-            placeholder="Mensagem..."
-            value={tempMessage}
-            onChange={(data) => handleMessageChange(data.target.value)}
+    <div className={enableFields ? styles.displayNone : styles.messageHistory}>
+      <form
+        className={enableFields ? styles.displayNone : ""}
+        onSubmit={(data) => handleNewMessageSubmit(data)}
+      >
+        <input
+          type="text"
+          id="sendMessage"
+          placeholder="Mensagem..."
+          value={tempMessage}
+          onChange={(data) => handleMessageChange(data.target.value)}
+          disabled={enableFields}
+        />
+        <button type="submit" disabled={enableFields}>
+          <FontAwesomeIcon
+            icon={faPaperPlane}
+            className={styles.addIcon}
+            color="#ffffff"
           />
-          <button type="submit">
-            <FontAwesomeIcon
-              icon={faPaperPlane}
-              className={styles.addIcon}
-              color="#ffffff"
-            />
-          </button>
-        </form>
-        <div className={styles.messageOverflow}>
-          {channelsMessageHistory
-            .filter((history, index) => index === currentChatIndex)
-            .map((message) =>
-              message.map((content, index) => {
-                return (
-                  <div key={index} className={styles.messageContainer}>
-                    <div className={styles.message}>
-                      <h5>{content.content}</h5>
-                    </div>
-                    <h6>{content.published_at}</h6>
+        </button>
+      </form>
+      <div className={styles.messageOverflow}>
+        {channelsMessageHistory
+          .filter((history, index) => index === currentChatIndex)
+          .map((message) =>
+            message.map((content, index) => {
+              return (
+                <div
+                  key={index}
+                  className={
+                    content.sender === user
+                      ? styles.messageSentContainer
+                      : styles.messageReceivedContainer
+                  }
+                >
+                  <div
+                    className={
+                      content.sender === user
+                        ? styles.messageSent
+                        : styles.messageReceived
+                    }
+                  >
+                    <h5>{content.content}</h5>
                   </div>
-                );
-              })
-            )}
-        </div>
+
+                  <h6
+                    className={
+                      content.sender === user ? styles.displayNone : ""
+                    }
+                  >
+                    {content.sender === user ? "" : content.sender}
+                  </h6>
+                  <h6>{content.published_at}</h6>
+                </div>
+              );
+            })
+          )}
       </div>
     </div>
   );
