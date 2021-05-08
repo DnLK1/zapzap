@@ -1,0 +1,105 @@
+.messageHistory {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+
+  width: 85%;
+  height: 100vh;
+  margin: auto;
+
+  background-color: var(--white-strong);
+  box-shadow: 0 1px 2px rgba(112, 124, 151, 0.07),
+    0 2px 4px rgba(112, 124, 151, 0.07), 0 4px 8px rgba(112, 124, 151, 0.07),
+    0 8px 16px rgba(112, 124, 151, 0.07), 0 16px 32px rgba(112, 124, 151, 0.07),
+    0 32px 64px rgba(112, 124, 151, 0.07);
+
+  form {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+    width: 90%;
+    margin: 0 auto;
+
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-light);
+
+    input {
+      border: none;
+      width: 80%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 50%;
+      background-image: var(--blue-gradient);
+      box-shadow: 0 4px 8px rgba(46, 139, 241, 0.5);
+    }
+  }
+}
+
+.messageOverflow {
+  display: flex;
+  max-width: 60%;
+  height: 80vh;
+  overflow: auto;
+  flex-direction: column-reverse;
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--white-light);
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--white-light);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background-color: var(--blue-medium);
+  }
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+
+  align-items: flex-end;
+
+  h6 {
+    opacity: 0.5;
+  }
+}
+
+.message {
+  display: inline-block;
+  flex-direction: row-reverse;
+
+  padding: 1rem 1.25rem;
+  max-width: 100%;
+  margin-bottom: 1rem;
+
+  background-color: var(--white-strong);
+  border: 1px solid var(--gray-light);
+  border-radius: 10px 10px 0 10px;
+
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.025), 0 2px 2px rgba(0, 0, 0, 0.025),
+    0 4px 4px rgba(0, 0, 0, 0.025), 0 6px 8px rgba(0, 0, 0, 0.025),
+    0 8px 16px rgba(0, 0, 0, 0.025);
+
+  text-align: right;
+  overflow-wrap: break-word;
+
+  h5 {
+    color: var(--gray);
+  }
+}

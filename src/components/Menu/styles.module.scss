@@ -1,0 +1,124 @@
+.menuContainer {
+  padding: 3rem 0;
+  width: 22.5rem;
+  height: 100vh;
+
+  background: var(--white-strong);
+  box-shadow: 0 1px 2px rgba(112, 124, 151, 0.07),
+    0 2px 4px rgba(112, 124, 151, 0.07), 0 4px 8px rgba(112, 124, 151, 0.07),
+    0 8px 16px rgba(112, 124, 151, 0.07), 0 16px 32px rgba(112, 124, 151, 0.07),
+    0 32px 64px rgba(112, 124, 151, 0.07);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  Img {
+    height: 7rem;
+    width: 7rem;
+
+    border: 1px solid var(--blue-strong);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    color: var(--black-light);
+    text-decoration: none;
+    font-family: var(--varela);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.125rem;
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    opacity: 0.5;
+
+    input {
+      padding: 0.25rem;
+
+      border-right: none;
+      border-radius: 10px 0 0 10px;
+      border-color: var(--gray);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      border: none;
+      border-radius: 0 10px 10px 0;
+      background: var(--gray);
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chatRooms {
+  align-self: flex-start;
+  flex-direction: column;
+
+  padding: 0 4rem;
+  width: 100%;
+  height: 50vh;
+  overflow: auto;
+
+  h4 {
+    margin-left: 1rem;
+
+    font-weight: 600;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--white-light);
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--white-light);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background-color: var(--blue-medium);
+  }
+}
+
+.chatRoom {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.chatRoomActive {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 2rem;
+
+  h4 {
+    background: var(--blue-gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

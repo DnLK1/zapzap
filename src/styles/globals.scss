@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue-light: #c9e0fb;
+  --blue-medium: #4a81c2;
+  --blue-strong: #298bf3;
+  --blue-gradient: linear-gradient(
+    160deg,
+    rgba(120, 185, 247, 1) 0%,
+    rgba(77, 158, 244, 1) 37%,
+    rgba(46, 139, 241, 1) 100%
+  );
+
+  --black: #0a0d12;
+  --black-light: #0d1c2e;
+
+  --gray: #707c97;
+  --gray-light: rgba(112, 124, 151, 0.25);
+
+  --green-light: #cbf4c9;
+  --green-medium: #47b642;
+  --gren-strong: #20a931;
+
+  --varela: "Varela Round", sans-serif;
+
+  --red-light: #fdccd8;
+  --red-medium: #c45777;
+  --red-strong: #fc2f67;
+
+  --white-light: #f3f3fb;
+  --white-strong: #ffffff;
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  background: var(--white-light);
+}
+
+body,
+input,
+textarea,
+button {
+  font: 500 1rem "Varela Round", sans-serif;
+  color: var(--gray);
+  letter-spacing: 0.125rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: "Varela Round", sans-serif;
+  color: var(--black);
+  letter-spacing: 0.125rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+button {
+  cursor: pointer;
+}
