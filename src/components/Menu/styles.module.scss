@@ -71,6 +71,16 @@
   align-items: center;
 }
 
+.cogIcon {
+  margin-left: 0.25rem;
+  cursor: pointer;
+}
+
+.profileDescription {
+  display: flex;
+  align-items: center;
+}
+
 .chatRooms {
   align-self: flex-start;
   flex-direction: column;

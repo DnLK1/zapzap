@@ -1,0 +1,56 @@
+.editChannelsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 50%;
+  height: 100vh;
+  margin: auto;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    select {
+      width: 100%;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      border: none;
+      background-color: var(--white-strong);
+
+      &:focus {
+        outline: none;
+        border: 1px solid var(--blue-strong);
+      }
+    }
+
+    button {
+      width: 80%;
+      margin-top: 2rem;
+      padding: 1rem;
+
+      background-image: var(--blue-gradient);
+      color: var(--white-strong);
+      border: none;
+    }
+  }
+}
+
+.deleteForm {
+  margin-bottom: 1rem;
+}
+
+.pagesButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: 5rem;
+
+  h4 {
+    color: var(--gray);
+    cursor: pointer;
+  }
+}

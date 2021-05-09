@@ -3,8 +3,24 @@ import { createContext, useState, useContext } from "react";
 export const ChatContext = createContext({});
 
 export function ChatContextProvider({ children }) {
+  const randomAvatar = [
+    "/avatars/guy-1.png",
+    "/avatars/guy-2.png",
+    "/avatars/guy-3.png",
+    "/avatars/guy-4.png",
+    "/avatars/girl-1.png",
+    "/avatars/girl-2.png",
+    "/avatars/girl-3.png",
+    "/avatars/girl-4.png",
+  ];
+
   const [fullData, setFullData] = useState([]);
   const [user, setUser] = useState("");
+  const [avatar, setAvatar] = useState(
+    randomAvatar[Math.floor(Math.random() * randomAvatar.length)]
+  );
+  const [tempAvatar, setTempAvatar] = useState("");
+  const [tempDeletedGroup, setTempDeletedGroup] = useState("");
   const [tempMessage, setTempMessage] = useState("");
   const [tempGroup, setTempGroup] = useState("");
   const [tempMember, setTempMember] = useState("");
@@ -21,6 +37,12 @@ export function ChatContextProvider({ children }) {
         setFullData,
         user,
         setUser,
+        avatar,
+        setAvatar,
+        tempDeletedGroup,
+        setTempDeletedGroup,
+        tempAvatar,
+        setTempAvatar,
         tempMessage,
         setTempMessage,
         channelsMessageHistory,

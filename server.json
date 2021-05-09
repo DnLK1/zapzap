@@ -1,3 +1,46 @@
 {
-  "channels": []
+  "channels": [
+    {
+      "id": "ap73j4c6t9ozih52zcqje",
+      "title": "addada",
+      "members": [
+        "Daniel Kaneko",
+        "Boladao"
+      ],
+      "messages": [
+        {
+          "sender": "Boladao",
+          "content": "falaew",
+          "published_at": "2021-01-22 16:35:40",
+          "channel_id": "ap73j4c6t9ozih52zcqje"
+        },
+        {
+          "sender": "Daniel Kaneko",
+          "content": "coe",
+          "published_at": "2021-01-22 16:35:40",
+          "channel_id": "ap73j4c6t9ozih52zcqje"
+        },
+        {
+          "sender": "Daniel Kaneko",
+          "content": "oien",
+          "published_at": "2021-01-22 16:35:40",
+          "channel_id": "ap73j4c6t9ozih52zcqje"
+        },
+        {
+          "sender": "Daniel Kaneko",
+          "content": "tfkfjh",
+          "published_at": "2021-01-22 16:35:40",
+          "channel_id": "ap73j4c6t9ozih52zcqje"
+        }
+      ]
+    },
+    {
+      "id": "k2t3j3j9c9n6nigk8g7s19",
+      "title": "adwd",
+      "members": [
+        "Daniel Kaneko"
+      ],
+      "messages": []
+    }
+  ]
 }

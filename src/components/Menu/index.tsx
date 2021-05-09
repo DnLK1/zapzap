@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments } from "@fortawesome/free-regular-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCog } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useChat } from "../../contexts/ChatsContext";
 import { api } from "../../services/api";
@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 export function Menu() {
   const {
+    avatar,
     user,
     fullData,
     setFullData,
@@ -43,6 +44,10 @@ export function Menu() {
     setFullData(data);
   }, [shouldUpdate]);
 
+  useEffect(async () => {
+    setTimeout(() => setShouldUpdate(shouldUpdate + 1), 5000);
+  }, [shouldUpdate]);
+
   function handleSelectChat(key) {
     setCurrentChatIndex(key);
     setEnableFields(false);
@@ -69,6 +74,10 @@ export function Menu() {
     setTempGroup("");
   }
 
+  function handleConfigClick() {
+    setCurrentChatIndex("");
+  }
+
   function handleGroupFieldChange(data) {
     setTempGroup(data);
   }
@@ -76,8 +85,17 @@ export function Menu() {
   return (
     <div className={user === "" ? styles.displayNone : styles.menuContainer}>
       <div className={styles.profileContainer}>
-        <img className={styles.avatarImage} src="/avatars/girl-4.png" />
-        <h2>{user}</h2>
+        <img className={styles.avatarImage} src={avatar} />
+        <div className={styles.profileDescription}>
+          <h2>{user}</h2>
+          <Link href={"/configurations"}>
+            <FontAwesomeIcon
+              icon={faCog}
+              onClick={() => handleConfigClick()}
+              className={styles.cogIcon}
+            />
+          </Link>
+        </div>
       </div>
 
       <div className={styles.chatRooms}>
@@ -90,14 +108,14 @@ export function Menu() {
               <div
                 key={index}
                 className={
-                  currentChatIndex == index
-                    ? styles.chatRoomActive
-                    : styles.chatRoom
+                  currentChatIndex !== index
+                    ? styles.chatRoom
+                    : styles.chatRoomActive
                 }
               >
                 <FontAwesomeIcon
                   icon={faComments}
-                  color={currentChatIndex == index ? "#298bf3" : ""}
+                  color={currentChatIndex !== index ? "" : "#298bf3"}
                 />
                 <Link href={`/chat/${chatSlug}`}>
                   <h4 onClick={() => handleSelectChat(index)}>

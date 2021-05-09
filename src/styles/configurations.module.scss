@@ -1,0 +1,61 @@
+.configurationsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 50%;
+  height: 100vh;
+  margin: auto;
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    div {
+      display: flex;
+      align-items: center;
+    }
+
+    button {
+      width: 80%;
+      margin-top: 2rem;
+      padding: 1rem;
+
+      background-image: var(--blue-gradient);
+      color: var(--white-strong);
+      border: none;
+    }
+  }
+}
+
+.logoffButton {
+  width: 80%;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background-color: var(--white-strong);
+
+  border: none;
+}
+
+.avatarImage {
+  width: 6rem;
+  height: 6rem;
+}
+
+.pagesButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: 5rem;
+
+  h4 {
+    color: var(--gray);
+    cursor: pointer;
+  }
+}
