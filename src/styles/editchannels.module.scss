@@ -35,6 +35,14 @@
       background-image: var(--blue-gradient);
       color: var(--white-strong);
       border: none;
+
+      &.disabledButton {
+        background-image: none;
+
+        background-color: var(--gray);
+
+        opacity: 0.5;
+      }
     }
   }
 }

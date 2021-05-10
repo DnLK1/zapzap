@@ -7,6 +7,7 @@ import { api } from "../../services/api";
 export function ChatInfo() {
   const {
     user,
+    avatar,
     membersList,
     currentChatIndex,
     fullData,
@@ -20,7 +21,7 @@ export function ChatInfo() {
   function handleNewMemberToGroup(event) {
     event.preventDefault();
 
-    const newMember = event.target.addToGroup.value;
+    const newMember = { user: event.target.addToGroup.value, avatar: avatar };
     const channelID = fullData[currentChatIndex].id;
     const attChannel = {
       id: channelID,
@@ -52,8 +53,8 @@ export function ChatInfo() {
             membersArray.map((member, index) => {
               return (
                 <div key={index} className={styles.profileContainer}>
-                  <img src="/avatars/girl-4.png" />
-                  <p>{member}</p>
+                  <img src={member.avatar} />
+                  <p>{member.user}</p>
                 </div>
               );
             })

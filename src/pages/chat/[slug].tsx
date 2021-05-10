@@ -3,10 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useChat } from "../../contexts/ChatsContext";
 import { api } from "../../services/api";
+import format from "date-fns/format";
+import ptBr from "date-fns/locale/pt-BR";
+import ptBR from "date-fns/esm/locale/pt-BR/index.js";
 
 export default function Chat() {
   const {
     user,
+    avatar,
     fullData,
     tempMessage,
     setTempMessage,
@@ -20,18 +24,25 @@ export default function Chat() {
   function handleNewMessageSubmit(event) {
     event.preventDefault();
 
+    const currentDate = format(new Date(), "dd MMM, kk:mm", {
+      locale: ptBR,
+    });
+    const avatarsNotToUpdate = fullData[currentChatIndex].members.filter(
+      (members) => !members.user.includes(user)
+    );
+    const avatarToUpdate = { user: user, avatar: avatar };
     const oldMessages = fullData[currentChatIndex].messages;
     const newMessage = event.target.sendMessage.value;
     const channelID = fullData[currentChatIndex].id;
     const attChannel = {
       id: channelID,
       title: fullData[currentChatIndex].title,
-      members: fullData[currentChatIndex].members,
+      members: [avatarToUpdate, ...avatarsNotToUpdate],
       messages: [
         {
           sender: user,
           content: newMessage,
-          published_at: "2021-01-22 16:35:40",
+          published_at: currentDate,
           channel_id: channelID,
         },
         ...oldMessages,
@@ -84,6 +95,13 @@ export default function Chat() {
                       : styles.messageReceivedContainer
                   }
                 >
+                  <h4
+                    className={
+                      content.sender === user ? styles.displayNone : ""
+                    }
+                  >
+                    {content.sender === user ? "" : content.sender}:
+                  </h4>
                   <div
                     className={
                       content.sender === user
@@ -94,13 +112,6 @@ export default function Chat() {
                     <h5>{content.content}</h5>
                   </div>
 
-                  <h6
-                    className={
-                      content.sender === user ? styles.displayNone : ""
-                    }
-                  >
-                    {content.sender === user ? "" : content.sender}
-                  </h6>
                   <h6>{content.published_at}</h6>
                 </div>
               );

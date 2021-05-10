@@ -15,6 +15,7 @@ export default function Home() {
 
   function handleChangeOption(data) {
     setTempDeletedGroup(data);
+    console.log(tempDeletedGroup);
   }
 
   function handleDeleteChats(event) {
@@ -24,6 +25,8 @@ export default function Home() {
       .map((channel) => channel.id);
     const deleteID = deleteObject[0];
     api.delete(`channels/${deleteID}`);
+
+    setTempDeletedGroup("nenhum");
 
     setShouldUpdate(shouldUpdate + 1);
   }
@@ -47,9 +50,15 @@ export default function Home() {
           id="deletechats"
           name="deletechats"
           onChange={(data) => handleChangeOption(data.target.value)}
+          value={tempDeletedGroup}
         >
+          <option disabled selected value="nenhum">
+            Escolha um canal
+          </option>
           {fullData
-            .filter((channels) => channels.members.includes(user))
+            .filter((channels) =>
+              channels.members.map((members) => members.user).includes(user)
+            )
             .map((channel, index) => {
               return (
                 <option key={index} value={channel.title}>
@@ -59,7 +68,13 @@ export default function Home() {
             })}
         </select>
 
-        <button type="submit">Deletar chat</button>
+        <button
+          className={tempDeletedGroup !== "nenhum" ? "" : styles.disabledButton}
+          disabled={tempDeletedGroup !== "nenhum" ? false : true}
+          type="submit"
+        >
+          Deletar chat
+        </button>
       </form>
     </div>
   );

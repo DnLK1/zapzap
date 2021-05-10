@@ -29,6 +29,7 @@ export default function Home() {
         </Link>
       </div>
       <h4>Escolha um avatar</h4>
+
       <form onSubmit={(data) => handleSelectAvatar(data)}>
         <div>
           <input

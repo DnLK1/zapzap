@@ -44,7 +44,7 @@ export function Menu() {
     setFullData(data);
   }, [shouldUpdate]);
 
-  useEffect(async () => {
+  useEffect(() => {
     setTimeout(() => setShouldUpdate(shouldUpdate + 1), 5000);
   }, [shouldUpdate]);
 
@@ -64,7 +64,7 @@ export function Menu() {
     const newChat = {
       id: randomID,
       title: newChatTitle,
-      members: [user],
+      members: [{ user: user, avatar: avatar }],
       messages: [],
     };
 
@@ -75,7 +75,7 @@ export function Menu() {
   }
 
   function handleConfigClick() {
-    setCurrentChatIndex("");
+    setCurrentChatIndex(-1);
   }
 
   function handleGroupFieldChange(data) {
@@ -100,7 +100,9 @@ export function Menu() {
 
       <div className={styles.chatRooms}>
         {fullData
-          .filter((channels) => channels.members.includes(user))
+          .filter((channels) =>
+            channels.members.map((members) => members.user).includes(user)
+          )
           .map((channel, index) => {
             const chatSlug = channel.title.replace(" ", "-").toLowerCase();
 
