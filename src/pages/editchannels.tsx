@@ -35,7 +35,7 @@ export default function Home() {
     <div className={styles.editChannelsContainer}>
       <div className={styles.pagesButtons}>
         <Link href={"/configurations"}>
-          <h4>&#60; Tela inicial</h4>
+          <h4>&#60; Voltar</h4>
         </Link>
         <Link href={"/configurations"}>
           <h4>Editar avatar &#62;</h4>

@@ -29,10 +29,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/configurations": [
+    "/editchannels": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/configurations.js"
+      "static/chunks/pages/editchannels.js"
     ]
   },
   "ampFirstPages": []
